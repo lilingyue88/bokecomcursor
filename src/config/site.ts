@@ -1,4 +1,4 @@
-import { SiteConfig } from '@/types';
+import { SiteConfig, NavigationItem } from '@/types';
 
 export const siteConfig: SiteConfig = {
   title: 'Bokecom',
@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
   },
 };
 
-export const navigation = [
+export const navigation: NavigationItem[] = [
   { name: '首页', href: '/' },
   { name: '文章', href: '/blog' },
   { name: '笔记', href: '/notes' },

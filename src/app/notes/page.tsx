@@ -1,12 +1,5 @@
 import notes from '@/content/notes.json';
-
-interface Note {
-  title: string;
-  slug: string;
-  date: string;
-  summary: string;
-  tags: string[];
-}
+import { Note } from '@/types';
 
 export default function NotesListPage() {
   return (

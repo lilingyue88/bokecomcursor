@@ -1,16 +1,9 @@
 "use client";
 
 import resources from '@/content/resources.json';
+import { Resource } from '@/types';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-
-interface Resource {
-  title: string;
-  url: string;
-  description: string;
-  category: string;
-  tags: string[];
-}
 
 export default function ResourcesPage() {
   const [category, setCategory] = useState<string>('全部');

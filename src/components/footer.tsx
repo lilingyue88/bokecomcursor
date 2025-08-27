@@ -1,8 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { navigation, siteConfig } from '@/config/site';
 import { Github, Twitter, Mail, ExternalLink, MessageCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -26,9 +26,9 @@ export function Footer() {
             </p>
             <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
               <span>RSS</span>
-              <a href="/rss.xml" className="hover:text-blue-600 dark:hover:text-blue-400">
+              <Link href="/rss.xml" className="hover:text-blue-600 dark:hover:text-blue-400">
                 <ExternalLink className="h-4 w-4" />
-              </a>
+              </Link>
             </div>
           </div>
 

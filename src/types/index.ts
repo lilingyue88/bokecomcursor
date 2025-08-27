@@ -18,24 +18,22 @@ export interface Note {
   date: string;
   summary: string;
   tags: string[];
-  related?: string[];
 }
 
 export interface Resource {
   title: string;
   url: string;
-  description: string;
   category: string;
   tags: string[];
+  description: string;
 }
 
 export interface GalleryItem {
   title: string;
-  album: string;
-  src: string;
-  thumb: string;
-  caption?: string;
-  takenAt?: string;
+  url: string;
+  description: string;
+  category: string;
+  tags: string[];
 }
 
 export interface SiteConfig {
@@ -53,4 +51,9 @@ export interface SiteConfig {
     bilibili?: string;
     linkedin?: string;
   };
+}
+
+export interface NavigationItem {
+  name: string;
+  href: string;
 }
