@@ -5,10 +5,10 @@ export const siteConfig: SiteConfig = {
   description: '个人博客与知识分享平台',
   author: '李金元',
   url: 'https://bokecom.vercel.app',
-  github: 'lijinyuan',
+  github: 'lilingyue88',
   email: 'lijinyuan@example.com',
   social: {
-    github: 'https://github.com/lijinyuan',
+    github: 'https://github.com/lilingyue88',
     twitter: 'https://twitter.com/lijinyuan',
     weibo: 'https://weibo.com/lijinyuan',
     zhihu: 'https://zhihu.com/people/lijinyuan',

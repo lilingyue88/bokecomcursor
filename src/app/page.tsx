@@ -88,7 +88,7 @@ export default function HomePage() {
               <Star className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-lg font-semibold mb-2">技术探索</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">前沿技术与实践经验分享</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">分享前沿技术、架构设计、性能优化等深度技术内容，记录学习过程中的思考与收获</p>
             <div className="text-xs text-gray-500 dark:text-gray-400">3 篇文章</div>
           </Link>
           
@@ -97,7 +97,7 @@ export default function HomePage() {
               <TrendingUp className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-lg font-semibold mb-2">成长记录</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">学习历程与思考总结</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">记录技术学习历程、项目经验总结、职业发展思考，分享个人成长路上的心得与感悟</p>
             <div className="text-xs text-gray-500 dark:text-gray-400">5 篇文章</div>
           </Link>
           
@@ -106,7 +106,7 @@ export default function HomePage() {
               <BookOpen className="h-8 w-8 text-white" />
             </div>
             <h3 className="text-lg font-semibold mb-2">读书笔记</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">好书推荐与阅读感悟</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">好书推荐与阅读感悟，技术书籍精读笔记，经典文章深度解析，让知识更有价值</p>
             <div className="text-xs text-gray-500 dark:text-gray-400">2 篇文章</div>
           </Link>
         </div>

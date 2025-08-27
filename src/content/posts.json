@@ -1,5 +1,29 @@
 [
   {
+    "title": "Next.js 14 新特性深度解析",
+    "slug": "nextjs-14-features",
+    "date": "2025-01-20",
+    "summary": "深入解析 Next.js 14 的新功能和改进，包括 App Router、Server Components、Turbopack 等核心特性的详细说明和实际应用案例。",
+    "tags": ["技术探索", "Next.js", "前端开发", "React"],
+    "readingTime": 12
+  },
+  {
+    "title": "我的技术学习之路：从入门到进阶",
+    "slug": "my-tech-learning-journey",
+    "date": "2025-01-18",
+    "summary": "分享个人技术学习经历，包括学习方法、遇到的挑战、解决方案以及职业发展思考，希望能给同样在技术路上前行的朋友一些启发。",
+    "tags": ["成长记录", "学习笔记", "技术分享", "职业发展"],
+    "readingTime": 8
+  },
+  {
+    "title": "《深入理解计算机系统》读书笔记",
+    "slug": "csapp-reading-notes",
+    "date": "2025-01-15",
+    "summary": "经典计算机系统教材的精读笔记，深入理解计算机底层原理，包括程序结构、处理器架构、内存层次结构等核心概念。",
+    "tags": ["读书笔记", "技术书籍", "计算机基础", "系统架构"],
+    "readingTime": 15
+  },
+  {
     "title": "Hello World",
     "slug": "hello-world",
     "date": "2025-01-01",
