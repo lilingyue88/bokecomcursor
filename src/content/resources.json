@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Next.js 文档",
+    "url": "https://nextjs.org/docs",
+    "description": "官方文档，入门与进阶的最佳入口",
+    "category": "教程",
+    "tags": ["nextjs", "web"]
+  },
+  {
+    "title": "Tailwind CSS",
+    "url": "https://tailwindcss.com/",
+    "description": "原子化 CSS 框架，快速构建 UI",
+    "category": "工具",
+    "tags": ["css", "utility"]
+  }
+]
+

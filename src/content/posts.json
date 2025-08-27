@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Hello World",
+    "slug": "hello-world",
+    "date": "2025-01-01",
+    "summary": "这是一篇示例文章，用于验证列表渲染与路由结构。",
+    "tags": ["示例", "起步"],
+    "readingTime": 3
+  },
+  {
+    "title": "第二篇文章",
+    "slug": "second-post",
+    "date": "2025-01-05",
+    "summary": "占位摘要：后续会由 Markdown/JSON 驱动生成。",
+    "tags": ["设计", "架构"],
+    "readingTime": 4
+  }
+]
+

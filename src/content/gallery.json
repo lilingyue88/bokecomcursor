@@ -1,0 +1,19 @@
+[
+  {
+    "title": "海边日出",
+    "album": "旅行",
+    "src": "/images/gallery/sample-1.jpg",
+    "thumb": "/images/gallery/sample-1-thumb.jpg",
+    "caption": "清晨的海边",
+    "takenAt": "2024-10-01"
+  },
+  {
+    "title": "城市夜景",
+    "album": "城市",
+    "src": "/images/gallery/sample-2.jpg",
+    "thumb": "/images/gallery/sample-2-thumb.jpg",
+    "caption": "雨后的霓虹",
+    "takenAt": "2024-09-20"
+  }
+]
+
