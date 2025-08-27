@@ -34,6 +34,7 @@ export interface Note {
 
 export interface Resource {
   title: string;
+  slug: string;
   url: string;
   category: string;
   tags: string[];
@@ -138,10 +139,6 @@ export function getAllNotes(): Note[] {
 export function getNoteBySlug(slug: string): Note | null {
   const notesDirectory = path.join(process.cwd(), 'src/content/notes');
   const fullPath = path.join(notesDirectory, `${slug}.md`);
-  
-  if (!fs.existsSync(fullPath)) {
-    return null;
-  }
   
   if (!fs.existsSync(fullPath)) {
     return null;

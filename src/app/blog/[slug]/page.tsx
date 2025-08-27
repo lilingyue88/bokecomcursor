@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Calendar, Clock, Tag, ArrowLeft, Share2 } from 'lucide-react';
+import { Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 import { getPostBySlug, getAllPostSlugs } from '@/lib/markdown';
-import { Markdown } from '@/components/markdown';
+import { MarkdownRenderer } from '@/components/markdown-renderer';
+import { ShareButton } from '@/components/share-button';
 
 // 生成静态路径
 export async function generateStaticParams() {
@@ -40,15 +41,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
 
   if (!post) {
     notFound();
   }
-
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareText = `${post.title} - ${post.summary}`;
 
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-10">
@@ -97,30 +95,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             ))}
           </div>
 
-          <button
-            onClick={() => {
-              if (navigator.share) {
-                navigator.share({
-                  title: post.title,
-                  text: post.summary,
-                  url: shareUrl,
-                });
-              } else {
-                navigator.clipboard.writeText(shareUrl);
-                alert('链接已复制到剪贴板');
-              }
-            }}
-            className="inline-flex items-center gap-2 px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          >
-            <Share2 className="h-4 w-4" />
-            分享
-          </button>
+          <ShareButton title={post.title} summary={post.summary} />
         </div>
       </header>
 
       {/* 文章内容 */}
-      <article className="prose prose-lg dark:prose-invert max-w-none">
-        <Markdown content={post.content} />
+      <article>
+        <MarkdownRenderer content={post.content} />
       </article>
 
       {/* 文章底部 */}

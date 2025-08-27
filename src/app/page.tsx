@@ -3,7 +3,7 @@ import { ArrowRight, BookOpen, Notebook, Images, Rss, ExternalLink, Star, Trendi
 import { getAllPosts } from '@/lib/markdown';
 
 export default function HomePage() {
-  // 获取所有文章
+  // 获取所有文章（服务器端）
   const allPosts = getAllPosts();
   
   // 获取最近的文章
