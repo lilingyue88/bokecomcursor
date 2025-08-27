@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"app/gallery/page.tsx -> yet-another-react-lightbox\":{\"id\":\"app/gallery/page.tsx -> yet-another-react-lightbox\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_yet-another-react-lightbox_dist_index_js.js\"]}}"
