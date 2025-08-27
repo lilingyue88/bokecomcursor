@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Notebook, Images, Rss, ExternalLink, Star, TrendingUp } from 'lucide-react';
-import posts from '@/content/posts.json';
-
-interface Post {
-  title: string;
-  slug: string;
-  date: string;
-  summary: string;
-  tags: string[];
-  readingTime: number;
-}
+import { getAllPosts } from '@/lib/markdown';
 
 export default function HomePage() {
+  // 获取所有文章
+  const allPosts = getAllPosts();
+  
+  // 获取最近的文章
+  const recentPosts = allPosts.slice(0, 4);
+  
+  // 统计各系列文章数量
+  const techPosts = allPosts.filter(post => post.tags.includes('技术探索')).length;
+  const growthPosts = allPosts.filter(post => post.tags.includes('成长记录')).length;
+  const bookPosts = allPosts.filter(post => post.tags.includes('读书笔记')).length;
+
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero */}
@@ -49,30 +51,34 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="grid gap-6 sm:grid-cols-2">
-          {([...(posts as Post[])]
-            .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-            .slice(0, 4)
-          ).map((p) => (
-            <article key={p.slug} className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
-              <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">{p.date}</div>
-              <Link href={`/blog/${p.slug}`} className="block">
-                <h3 className="text-lg font-semibold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
-                  {p.title}
-                </h3>
-              </Link>
-              <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{p.summary}</p>
-              <div className="flex items-center justify-between">
-                <div className="flex gap-2">
-                  {p.tags.slice(0, 2).map((tag: string) => (
-                    <span key={tag} className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full">
-                      {tag}
-                    </span>
-                  ))}
+          {recentPosts.length > 0 ? (
+            recentPosts.map((post) => (
+              <article key={post.slug} className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+                <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">{post.date}</div>
+                <Link href={`/blog/${post.slug}`} className="block">
+                  <h3 className="text-lg font-semibold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                </Link>
+                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{post.summary}</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-2">
+                    {post.tags.slice(0, 2).map((tag: string) => (
+                      <span key={tag} className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">约 {post.readingTime} 分钟</span>
                 </div>
-                <span className="text-sm text-gray-500 dark:text-gray-400">约 {p.readingTime} 分钟</span>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))
+          ) : (
+            <div className="col-span-2 text-center py-12 text-gray-500 dark:text-gray-400">
+              <BookOpen className="h-16 w-16 mx-auto mb-4 opacity-50" />
+              <p>还没有文章，快来发布第一篇吧！</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -89,7 +95,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-lg font-semibold mb-2">技术探索</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">分享前沿技术、架构设计、性能优化等深度技术内容，记录学习过程中的思考与收获</p>
-            <div className="text-xs text-gray-500 dark:text-gray-400">3 篇文章</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">{techPosts} 篇文章</div>
           </Link>
           
           <Link href="/blog?tag=成长记录" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-green-300 dark:hover:border-green-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
@@ -98,7 +104,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-lg font-semibold mb-2">成长记录</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">记录技术学习历程、项目经验总结、职业发展思考，分享个人成长路上的心得与感悟</p>
-            <div className="text-xs text-gray-500 dark:text-gray-400">5 篇文章</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">{growthPosts} 篇文章</div>
           </Link>
           
           <Link href="/blog?tag=读书笔记" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
@@ -107,7 +113,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-lg font-semibold mb-2">读书笔记</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">好书推荐与阅读感悟，技术书籍精读笔记，经典文章深度解析，让知识更有价值</p>
-            <div className="text-xs text-gray-500 dark:text-gray-400">2 篇文章</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">{bookPosts} 篇文章</div>
           </Link>
         </div>
       </section>
