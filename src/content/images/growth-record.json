@@ -1,0 +1,22 @@
+{
+  "id": "growth-record",
+  "name": "成长记录",
+  "slug": "growth-record",
+  "description": "技术学习历程、项目经验总结、职业发展思考",
+  "cover": "/images/growth-record/cover.jpg",
+  "category": "成长",
+  "tags": ["成长", "学习", "经验"],
+  "createdAt": "2025-01-20",
+  "imageCount": 1,
+  "images": [
+    {
+      "id": "growth-learning-1",
+      "src": "/images/growth-record/learning-1.jpg",
+      "alt": "学习环境",
+      "caption": "日常学习的工作环境",
+      "category": "学习",
+      "tags": ["学习环境", "成长"],
+      "createdAt": "2025-01-20"
+    }
+  ]
+}

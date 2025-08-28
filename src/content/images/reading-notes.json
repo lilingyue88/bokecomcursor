@@ -1,0 +1,22 @@
+{
+  "id": "reading-notes",
+  "name": "读书笔记",
+  "slug": "reading-notes",
+  "description": "好书推荐与阅读感悟，技术书籍精读笔记",
+  "cover": "/images/reading-notes/cover.jpg",
+  "category": "读书",
+  "tags": ["读书", "笔记", "感悟"],
+  "createdAt": "2025-01-20",
+  "imageCount": 1,
+  "images": [
+    {
+      "id": "reading-book-1",
+      "src": "/images/reading-notes/book-1.jpg",
+      "alt": "技术书籍",
+      "caption": "正在阅读的技术书籍",
+      "category": "书籍",
+      "tags": ["技术书籍", "阅读"],
+      "createdAt": "2025-01-20"
+    }
+  ]
+}
