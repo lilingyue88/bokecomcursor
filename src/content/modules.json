@@ -1,0 +1,29 @@
+{
+  "技术探索": {
+    "name": "技术探索",
+    "description": "分享前沿技术、架构设计、性能优化等深度技术内容",
+    "icon": "Star",
+    "color": "from-blue-500 to-purple-600",
+    "posts": ["react-performance", "nextjs-optimization"],
+    "notes": ["typescript-tips", "git-workflow"],
+    "resources": ["frontend-tools", "backend-frameworks"]
+  },
+  "成长记录": {
+    "name": "成长记录",
+    "description": "记录技术学习历程、项目经验总结、职业发展思考",
+    "icon": "TrendingUp",
+    "color": "from-green-500 to-teal-600",
+    "posts": ["career-journey", "project-lessons"],
+    "notes": ["learning-notes", "skill-development"],
+    "resources": ["learning-resources", "career-guides"]
+  },
+  "读书笔记": {
+    "name": "读书笔记",
+    "description": "好书推荐与阅读感悟，技术书籍精读笔记，经典文章深度解析",
+    "icon": "BookOpen",
+    "color": "from-purple-500 to-pink-600",
+    "posts": ["clean-code-review", "design-patterns"],
+    "notes": ["book-summary", "reading-notes"],
+    "resources": ["book-recommendations", "study-materials"]
+  }
+}

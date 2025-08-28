@@ -24,7 +24,7 @@ export const navigation: NavigationItem[] = [
   { name: '资源', href: '/resources' },
   { name: '相册', href: '/gallery' },
   { name: '关于', href: '/about' },
-  { name: '留言墙', href: '/guestbook' },
+  { name: '留言墙', href: '/guestbook', target: '_self' },
 ];
 
 export const giscusConfig = {

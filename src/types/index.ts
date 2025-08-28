@@ -18,14 +18,16 @@ export interface Note {
   date: string;
   summary: string;
   tags: string[];
+  readingTime: number;
 }
 
 export interface Resource {
   title: string;
-  url: string;
-  category: string;
+  slug: string;
+  date: string;
+  summary: string;
   tags: string[];
-  description: string;
+  readingTime: number;
 }
 
 export interface GalleryItem {
@@ -56,4 +58,5 @@ export interface SiteConfig {
 export interface NavigationItem {
   name: string;
   href: string;
+  target?: '_self' | '_blank';
 }

@@ -30,6 +30,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href as any}
+                target={item.target}
                 className="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
               >
                 {item.name}
@@ -69,6 +70,7 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href as any}
+                  target={item.target}
                   className="text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >

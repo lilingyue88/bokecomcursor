@@ -89,7 +89,7 @@ export default function HomePage() {
           <p className="text-gray-600 dark:text-gray-400">深度内容与专题讨论</p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <Link href="/blog?tag=技术探索" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+          <Link href="/module/技术探索" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
               <Star className="h-8 w-8 text-white" />
             </div>
@@ -98,7 +98,7 @@ export default function HomePage() {
             <div className="text-xs text-gray-500 dark:text-gray-400">{techPosts} 篇文章</div>
           </Link>
           
-          <Link href="/blog?tag=成长记录" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-green-300 dark:hover:border-green-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+          <Link href="/module/成长记录" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-green-300 dark:hover:border-green-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center group-hover:scale-110 transition-transform">
               <TrendingUp className="h-8 w-8 text-white" />
             </div>
@@ -107,7 +107,7 @@ export default function HomePage() {
             <div className="text-xs text-gray-500 dark:text-gray-400">{growthPosts} 篇文章</div>
           </Link>
           
-          <Link href="/blog?tag=读书笔记" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+          <Link href="/module/读书笔记" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center group-hover:scale-110 transition-transform">
               <BookOpen className="h-8 w-8 text-white" />
             </div>
