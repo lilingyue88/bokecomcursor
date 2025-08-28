@@ -1,51 +1,127 @@
-# 图片上传和管理指南
+# 🖼️ 图片上传指南
 
-## 🎯 概述
+## 📁 文件夹结构
 
-本指南将教你如何在网站中上传图片、创建相册，并管理图片内容。现在你可以：
-
-1. ✅ 在 `src/content/images/` 目录中管理图片
-2. ✅ 创建多个相册集
-3. ✅ 点击相册进入查看详细图片
-4. ✅ 使用灯箱功能查看大图
-
-## 📁 目录结构
+现在 `public/images/` 文件夹已经在 GitHub 仓库中了！你可以直接上传图片到对应的相册文件夹：
 
 ```
-src/content/images/
-├── README.md           # 详细说明文档
-├── albums.md           # 相册配置说明
-├── albums.json         # 相册数据文件
+public/images/
 ├── tech-share/         # 技术分享相册
-├── life-record/        # 生活记录相册
-└── travel-memory/      # 旅行记忆相册
-
-public/images/          # 实际图片文件存储位置
-├── tech-share/         # 技术分享相册图片
-├── life-record/        # 生活记录相册图片
-└── travel-memory/      # 旅行记忆相册图片
+├── growth-record/      # 成长记录相册
+├── reading-notes/      # 读书笔记相册
+└── life-moments/       # 生活瞬间相册
 ```
 
-## 🚀 快速开始
+## 🚀 如何上传图片
 
-### 第一步：上传图片文件
+### 方法 1：通过 GitHub 网页上传（推荐）
 
-1. **准备图片文件**：
-   - 支持的格式：JPG、PNG、WebP、GIF
-   - 建议尺寸：不超过 2000x2000 像素
-   - 文件大小：建议小于 2MB
+1. **访问你的仓库**: https://github.com/lilingyue88/bokecomcursor
+2. **进入相册文件夹**: 点击 `public/images/` → 选择相册文件夹（如 `tech-share`）
+3. **上传图片**: 点击 "Add file" → "Upload files"
+4. **拖拽图片**: 将图片文件拖拽到上传区域
+5. **提交更改**: 添加提交信息，如 "添加技术分享照片"，然后点击 "Commit changes"
 
-2. **上传到相册文件夹**：
-   ```bash
-   # 将图片复制到相应的相册文件夹
-   cp your-image.jpg public/images/tech-share/
-   cp your-image.jpg public/images/life-record/
-   cp your-image.jpg public/images/travel-memory/
-   ```
+### 方法 2：通过 Git 命令行上传
 
-### 第二步：配置相册信息
+```bash
+# 1. 将图片复制到对应文件夹
+cp your-image.jpg public/images/tech-share/
 
-编辑 `src/content/images/albums.json` 文件，添加新图片信息：
+# 2. 添加到 Git
+git add public/images/tech-share/your-image.jpg
+
+# 3. 提交更改
+git commit -m "添加技术分享照片"
+
+# 4. 推送到 GitHub
+git push origin main
+```
+
+## 📝 更新相册配置
+
+上传图片后，需要更新对应的 JSON 配置文件：
+
+### 1. 编辑相册配置文件
+
+在 `src/content/images/` 目录中找到对应的 JSON 文件：
+- `tech-share.json` - 技术分享相册
+- `growth-record.json` - 成长记录相册
+- `reading-notes.json` - 读书笔记相册
+- `life-moments.json` - 生活瞬间相册
+
+### 2. 添加图片信息
+
+在 `images` 数组中添加新图片：
+
+```json
+{
+  "id": "tech-meeting-3",
+  "src": "/images/tech-share/your-new-image.jpg",
+  "alt": "新图片描述",
+  "caption": "新图片标题",
+  "category": "会议",
+  "tags": ["技术分享", "新照片"],
+  "createdAt": "2025-01-21"
+}
+```
+
+### 3. 更新图片数量
+
+记得更新 `imageCount` 字段：
+
+```json
+"imageCount": 3
+```
+
+## 🎯 图片要求
+
+### 支持的格式
+- ✅ JPG/JPEG
+- ✅ PNG
+- ✅ WebP
+- ✅ GIF
+
+### 建议规格
+- **尺寸**: 不超过 2000x2000 像素
+- **文件大小**: 建议小于 2MB
+- **命名**: 使用英文，避免空格和特殊字符
+
+### 命名示例
+```
+meeting-1.jpg
+tech-discussion.png
+workshop-photo.webp
+```
+
+## 🔄 完整工作流程
+
+### 步骤 1：上传图片文件
+1. 将图片上传到 `public/images/[相册名]/` 文件夹
+2. 通过 GitHub 网页或 Git 命令行
+
+### 步骤 2：更新相册配置
+1. 编辑对应的 JSON 配置文件
+2. 添加新图片信息到 `images` 数组
+3. 更新 `imageCount` 字段
+
+### 步骤 3：提交更改
+1. 提交图片文件更改
+2. 提交配置文件更改
+3. 推送到 GitHub
+
+### 步骤 4：查看效果
+1. 等待部署完成（如果使用 Vercel 等平台）
+2. 访问 `/gallery` 查看相册列表
+3. 点击相册查看详细图片
+
+## 📋 示例：添加技术分享照片
+
+### 1. 上传图片
+- 将 `meeting-3.jpg` 上传到 `public/images/tech-share/`
+
+### 2. 更新配置
+编辑 `src/content/images/tech-share.json`：
 
 ```json
 {
@@ -80,199 +156,52 @@ public/images/          # 实际图片文件存储位置
     {
       "id": "tech-meeting-3",
       "src": "/images/tech-share/meeting-3.jpg",
-      "alt": "新上传的图片",
-      "caption": "新添加的技术分享照片",
-      "category": "分享",
-      "tags": ["技术分享", "新照片"],
+      "alt": "新添加的会议照片",
+      "caption": "最新技术分享会照片",
+      "category": "会议",
+      "tags": ["技术分享", "最新"],
       "createdAt": "2025-01-21"
     }
   ]
 }
 ```
 
-### 第三步：查看效果
+## 🚨 注意事项
 
-1. **访问相册列表**：`/gallery`
-2. **点击相册进入详情**：`/gallery/tech-share`
-3. **点击图片查看大图**：使用灯箱功能
+### 路径一致性
+- 确保 JSON 中的 `src` 路径与实际文件路径一致
+- 图片路径必须以 `/images/` 开头
+- 路径区分大小写
 
-## 📸 图片字段说明
-
-### 必需字段
-- `id`: 图片唯一标识符（建议使用描述性名称）
-- `src`: 图片文件路径（相对于 public 目录）
-- `alt`: 图片替代文本（用于无障碍访问）
-- `category`: 图片分类
-- `tags`: 图片标签数组
-- `createdAt`: 创建日期
-
-### 可选字段
-- `caption`: 图片标题或说明
-- `width`: 图片宽度（像素）
-- `height`: 图片高度（像素）
-
-## 🎨 相册管理
-
-### 创建新相册
-
-1. **创建文件夹**：
-   ```bash
-   mkdir public/images/new-album
-   ```
-
-2. **更新 albums.json**：
-   ```json
-   {
-     "id": "new-album",
-     "name": "新相册",
-     "slug": "new-album",
-     "description": "新相册的描述",
-     "cover": "/images/new-album/cover.jpg",
-     "category": "新分类",
-     "tags": ["新标签"],
-     "createdAt": "2025-01-21",
-     "imageCount": 0,
-     "images": []
-   }
-   ```
-
-### 删除相册
-
-1. **从 albums.json 中移除相册**
-2. **删除对应的文件夹**：
-   ```bash
-   rm -rf public/images/old-album
-   ```
-
-### 编辑相册信息
-
-直接修改 `albums.json` 文件中的相应字段即可。
-
-## 🔧 高级功能
-
-### 灯箱查看
-
-- 点击任何图片都会打开灯箱
-- 支持键盘导航（左右箭头、ESC）
-- 显示图片标题和描述
-
-### 响应式网格
-
-- 自动适应不同屏幕尺寸
-- 移动端：2列
-- 平板：3列
-- 桌面：4-5列
-
-### 标签系统
-
-- 支持多标签分类
-- 标签用于搜索和分类
-- 可以按标签筛选图片
-
-## 📱 使用示例
-
-### 示例1：添加技术分享照片
-
-1. **上传图片**：
-   ```bash
-   cp ~/Downloads/tech-conference.jpg public/images/tech-share/
-   ```
-
-2. **更新配置**：
-   ```json
-   {
-     "id": "tech-conference-2024",
-     "src": "/images/tech-share/tech-conference.jpg",
-     "alt": "2024年技术大会",
-     "caption": "年度技术大会现场盛况",
-     "category": "大会",
-     "tags": ["技术大会", "2024", "盛况"],
-     "createdAt": "2025-01-21"
-   }
-   ```
-
-### 示例2：创建生活相册
-
-1. **创建文件夹**：
-   ```bash
-   mkdir public/images/daily-life
-   ```
-
-2. **添加相册配置**：
-   ```json
-   {
-     "id": "daily-life",
-     "name": "日常生活",
-     "slug": "daily-life",
-     "description": "记录日常生活的点点滴滴",
-     "cover": "/images/daily-life/cover.jpg",
-     "category": "生活",
-     "tags": ["生活", "日常", "记录"],
-     "createdAt": "2025-01-21",
-     "imageCount": 0,
-     "images": []
-   }
-   ```
-
-## ⚠️ 注意事项
-
-### 文件管理
-- 图片文件必须放在 `public/images/` 目录下
-- 路径必须以 `/images/` 开头
-- 避免使用中文文件名
-
-### 性能优化
-- 图片尺寸不要过大
-- 使用适当的图片格式
-- 考虑图片压缩
-
-### 数据一致性
-- 确保 `albums.json` 中的图片路径与实际文件路径一致
+### 数据同步
+- 保持 `imageCount` 与实际图片数量一致
+- 确保每个图片都有唯一的 `id`
 - 定期检查图片文件是否存在
-- 保持图片数量与 `imageCount` 字段同步
 
-## 🚀 部署和更新
+### 版本控制
+- 图片文件和配置文件要一起提交
+- 使用清晰的提交信息
+- 定期备份重要图片
 
-### 本地开发
-1. 上传图片到相应文件夹
-2. 更新 `albums.json` 配置
-3. 刷新浏览器查看效果
+## 🆘 常见问题
 
-### 生产部署
-1. 提交所有更改到 Git
-2. 推送到 GitHub 仓库
-3. Vercel 自动重新构建和部署
+### Q: 图片上传后不显示？
+A: 检查 JSON 配置文件中的路径是否正确，确保图片已上传到正确文件夹。
 
-## 🔍 故障排除
+### Q: 如何删除图片？
+A: 从文件夹中删除图片文件，然后从 JSON 配置中移除对应条目，更新 `imageCount`。
 
-### 图片不显示
-- 检查文件路径是否正确
-- 确认文件存在于指定位置
-- 检查文件权限
+### Q: 可以创建新相册吗？
+A: 可以！创建新文件夹和对应的 JSON 配置文件即可。
 
-### 相册页面错误
-- 验证 JSON 格式是否正确
-- 检查相册 slug 是否唯一
-- 确认所有必需字段都已填写
-
-### 灯箱不工作
-- 检查图片路径是否正确
-- 确认图片格式受支持
-- 查看浏览器控制台错误
-
-## 📚 相关文档
-
-- [Markdown 内容管理指南](./MARKDOWN_CONTENT_GUIDE.md)
-- [相册配置说明](./src/content/images/README.md)
-- [项目部署指南](./DEPLOYMENT.md)
+### Q: 图片太大怎么办？
+A: 使用图片压缩工具（如 TinyPNG）压缩后再上传。
 
 ## 🎉 开始使用
 
 现在你可以：
+1. **立即上传图片**到对应的相册文件夹
+2. **编辑 JSON 配置文件**添加图片信息
+3. **在网站中查看**相册效果
 
-1. **上传图片**到相应的相册文件夹
-2. **编辑相册配置**在 `albums.json` 中
-3. **查看相册**在 `/gallery` 页面
-4. **管理图片**通过编辑配置文件
-
-如有问题，请参考示例配置或查看相关文档！
+如有问题，请参考示例配置或查看项目文档！

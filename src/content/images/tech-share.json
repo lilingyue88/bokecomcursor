@@ -5,9 +5,13 @@
   "description": "技术会议和分享活动的照片记录",
   "cover": "/images/tech-share/cover.jpg",
   "category": "技术",
-  "tags": ["技术", "会议", "分享"],
+  "tags": [
+    "技术",
+    "会议",
+    "分享"
+  ],
   "createdAt": "2025-01-20",
-  "imageCount": 2,
+  "imageCount": 5,
   "images": [
     {
       "id": "tech-meeting-1",
@@ -15,7 +19,10 @@
       "alt": "技术会议现场",
       "caption": "2024年技术分享会现场照片",
       "category": "会议",
-      "tags": ["技术分享", "会议"],
+      "tags": [
+        "技术分享",
+        "会议"
+      ],
       "createdAt": "2025-01-20"
     },
     {
@@ -24,8 +31,47 @@
       "alt": "小组讨论",
       "caption": "小组技术讨论环节",
       "category": "讨论",
-      "tags": ["技术讨论", "小组"],
+      "tags": [
+        "技术讨论",
+        "小组"
+      ],
       "createdAt": "2025-01-20"
+    },
+    {
+      "id": "tech-share-1756374933942-0",
+      "src": "/images/tech-share/photo1.jpg",
+      "alt": "photo1",
+      "caption": "photo1",
+      "category": "技术",
+      "tags": [
+        "技术",
+        "分享"
+      ],
+      "createdAt": "2025-08-28"
+    },
+    {
+      "id": "tech-share-1756374933947-1",
+      "src": "/images/tech-share/photo2.png",
+      "alt": "photo2",
+      "caption": "photo2",
+      "category": "技术",
+      "tags": [
+        "技术",
+        "分享"
+      ],
+      "createdAt": "2025-08-28"
+    },
+    {
+      "id": "tech-share-1756374933947-2",
+      "src": "/images/tech-share/photo3.webp",
+      "alt": "photo3",
+      "caption": "photo3",
+      "category": "技术",
+      "tags": [
+        "技术",
+        "分享"
+      ],
+      "createdAt": "2025-08-28"
     }
   ]
 }
