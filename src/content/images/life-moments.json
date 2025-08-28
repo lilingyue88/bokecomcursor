@@ -7,8 +7,17 @@
   "category": "生活",
   "tags": ["生活", "工作", "瞬间"],
   "createdAt": "2025-01-20",
-  "imageCount": 1,
+  "imageCount": 2,
   "images": [
+    {
+      "id": "life-moments-cover",
+      "src": "/images/life-moments/cover.jpg",
+      "alt": "生活瞬间相册封面",
+      "caption": "生活瞬间相册封面图片",
+      "category": "封面",
+      "tags": ["封面", "生活瞬间"],
+      "createdAt": "2025-01-20"
+    },
     {
       "id": "life-work-1",
       "src": "/images/life-moments/work-1.jpg",

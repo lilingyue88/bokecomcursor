@@ -7,8 +7,17 @@
   "category": "成长",
   "tags": ["成长", "学习", "经验"],
   "createdAt": "2025-01-20",
-  "imageCount": 1,
+  "imageCount": 2,
   "images": [
+    {
+      "id": "growth-record-cover",
+      "src": "/images/growth-record/cover.jpg",
+      "alt": "成长记录相册封面",
+      "caption": "成长记录相册封面图片",
+      "category": "封面",
+      "tags": ["封面", "成长记录"],
+      "createdAt": "2025-01-20"
+    },
     {
       "id": "growth-learning-1",
       "src": "/images/growth-record/learning-1.jpg",

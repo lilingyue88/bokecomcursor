@@ -11,8 +11,17 @@
     "分享"
   ],
   "createdAt": "2025-01-20",
-  "imageCount": 13,
+  "imageCount": 14,
   "images": [
+    {
+      "id": "tech-share-cover",
+      "src": "/images/tech-share/cover.jpg",
+      "alt": "技术分享相册封面",
+      "caption": "技术分享相册封面图片",
+      "category": "封面",
+      "tags": ["封面", "技术分享"],
+      "createdAt": "2025-01-20"
+    },
     {
       "id": "tech-meeting-1",
       "src": "/images/tech-share/meeting-1.jpg",
