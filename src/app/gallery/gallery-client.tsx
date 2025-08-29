@@ -43,6 +43,7 @@ export function GalleryClient({ albums }: GalleryClientProps) {
                     src={album.cover}
                     alt={album.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">

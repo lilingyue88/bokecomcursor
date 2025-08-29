@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Album, GalleryImage } from '@/types/gallery';
 import 'yet-another-react-lightbox/styles.css';
 import dynamic from 'next/dynamic';
+import { ResponsiveGrid } from './responsive-grid';
 
 const Lightbox = dynamic(() => import('yet-another-react-lightbox'), { ssr: false });
 
@@ -41,33 +42,14 @@ export function AlbumDetailClient({ album }: AlbumDetailClientProps) {
 
   return (
     <>
-      {/* 图片网格 */}
-      <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        {album.images.map((image, i) => (
-          <figure
-            key={image.id}
-            className="group overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 cursor-zoom-in hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200"
-            onClick={() => {
-              setIndex(i);
-              setOpen(true);
-            }}
-          >
-            <div className="aspect-square overflow-hidden">
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-            
-            {image.caption && (
-              <figcaption className="p-2 text-xs text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800">
-                {image.caption}
-              </figcaption>
-            )}
-          </figure>
-        ))}
-      </div>
+      {/* 响应式图片网格 */}
+      <ResponsiveGrid 
+        images={album.images} 
+        onImageClick={(index) => {
+          setIndex(index);
+          setOpen(true);
+        }}
+      />
 
       {/* 灯箱 */}
       {open && (
