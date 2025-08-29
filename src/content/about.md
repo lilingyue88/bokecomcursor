@@ -1,8 +1,8 @@
 ---
 title: "关于我"
 description: "个人介绍、技能特长、联系方式等"
-avatar: "/images/avatar.jpg"
-lastUpdated: "2025-01-21"
+avatar: "/images/Avater.jpg"
+lastUpdated: "2025-07-29"
 ---
 
 # 👋 关于我
