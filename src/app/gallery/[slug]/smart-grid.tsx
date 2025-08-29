@@ -2,30 +2,29 @@
 
 import { GalleryImage } from '@/types/gallery';
 
-interface ResponsiveGridProps {
+interface SmartGridProps {
   images: GalleryImage[];
   onImageClick: (index: number) => void;
 }
 
-export function ResponsiveGrid({ images, onImageClick }: ResponsiveGridProps) {
+export function SmartGrid({ images, onImageClick }: SmartGridProps) {
   return (
-    <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+    <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 space-y-4">
       {images.map((image, i) => (
         <figure
           key={image.id}
-          className="group overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 cursor-zoom-in hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200"
+          className="group break-inside-avoid overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 cursor-zoom-in hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 mb-4"
           onClick={() => onImageClick(i)}
         >
-          <div className="relative w-full bg-gray-100 dark:bg-gray-800">
+          <div className="relative w-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center p-2">
             <img
               src={image.src}
               alt={image.alt}
-              className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
               style={{
-                minHeight: '120px',
-                maxHeight: '300px',
-                objectFit: 'contain'
+                maxHeight: '180px',
+                maxWidth: '100%'
               }}
             />
           </div>

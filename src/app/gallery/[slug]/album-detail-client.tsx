@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Album, GalleryImage } from '@/types/gallery';
 import 'yet-another-react-lightbox/styles.css';
 import dynamic from 'next/dynamic';
-import { ResponsiveGrid } from './responsive-grid';
+import { SmartGrid } from './smart-grid';
 
 const Lightbox = dynamic(() => import('yet-another-react-lightbox'), { ssr: false });
 
@@ -42,8 +42,8 @@ export function AlbumDetailClient({ album }: AlbumDetailClientProps) {
 
   return (
     <>
-      {/* 响应式图片网格 */}
-      <ResponsiveGrid 
+      {/* 智能图片网格 */}
+      <SmartGrid 
         images={album.images} 
         onImageClick={(index) => {
           setIndex(index);
