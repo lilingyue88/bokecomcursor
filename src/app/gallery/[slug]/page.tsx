@@ -4,6 +4,9 @@ import { ArrowLeft, Calendar, Images, Tag } from 'lucide-react';
 import { getAlbumBySlug, getAllAlbumSlugs } from '@/lib/gallery';
 import { AlbumDetailClient } from './album-detail-client';
 
+// 禁用静态生成，确保每次请求都重新读取数据
+export const dynamic = 'force-dynamic';
+
 // 生成静态路径
 export async function generateStaticParams() {
   const slugs = getAllAlbumSlugs();

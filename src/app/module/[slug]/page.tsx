@@ -7,6 +7,9 @@ import modulesData from '@/content/modules.json';
 import type { ModulesData } from '@/types';
 import { AlbumCover } from '@/app/gallery/album-cover';
 
+// 禁用静态生成，确保每次请求都重新读取数据
+export const dynamic = 'force-dynamic';
+
 interface ModulePageProps {
   params: {
     slug: string;
