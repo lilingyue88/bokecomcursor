@@ -37,7 +37,7 @@ export function GalleryClient({ albums }: GalleryClientProps) {
               className="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
             >
               {/* 相册封面 */}
-              <div className="aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+              <div className="relative w-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center" style={{ minHeight: '200px' }}>
                 {album.cover ? (
                   <img
                     src={album.cover}
@@ -45,7 +45,7 @@ export function GalleryClient({ albums }: GalleryClientProps) {
                     className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                     style={{
-                      maxHeight: '100%',
+                      maxHeight: '180px',
                       maxWidth: '100%'
                     }}
                   />
