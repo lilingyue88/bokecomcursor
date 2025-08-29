@@ -5,6 +5,7 @@ import { getAllPosts, getAllNotes, getAllResources } from '@/lib/markdown';
 import { getAllAlbums } from '@/lib/gallery';
 import modulesData from '@/content/modules.json';
 import type { ModulesData } from '@/types';
+import { AlbumCover } from '@/app/gallery/album-cover';
 
 interface ModulePageProps {
   params: {
@@ -175,49 +176,11 @@ export default function ModulePage({ params }: ModulePageProps) {
             {moduleAlbums.map((album) => (
               <Link key={album.slug} href={`/gallery/${album.slug}`} className="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-pink-300 dark:hover:border-pink-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
                 {/* 相册封面 */}
-                <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
-                  {album.cover ? (
-                    <>
-                      {/* 模糊背景填充 */}
-                      <div 
-                        className="absolute inset-0 bg-cover bg-center scale-110 opacity-80"
-                        style={{
-                          backgroundImage: `url(${album.cover})`,
-                          filter: 'blur(16px)',
-                        }}
-                      />
-                      
-                      {/* 背景图片 */}
-                      <img
-                        src={album.cover}
-                        alt={album.name}
-                        className="absolute inset-0 w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                      
-                      {/* 半透明蒙版 */}
-                      <div className="absolute inset-0 bg-black/15 dark:bg-black/25 transition-opacity duration-300 group-hover:bg-black/10 dark:group-hover:bg-black/20" />
-                      
-                      {/* 前景图片 */}
-                      <div className="absolute inset-0 flex items-center justify-center p-4">
-                        <img
-                          src={album.cover}
-                          alt={album.name}
-                          className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
-                          loading="lazy"
-                          style={{
-                            maxHeight: '120px',
-                            maxWidth: '100%'
-                          }}
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Images className="h-16 w-16 text-gray-400" />
-                    </div>
-                  )}
-                </div>
+                <AlbumCover 
+                  src={album.cover || ''} 
+                  alt={album.name} 
+                  name={album.name} 
+                />
                 
                 {/* 相册信息 */}
                 <div className="p-6 bg-white dark:bg-gray-900">

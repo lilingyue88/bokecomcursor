@@ -11,6 +11,7 @@ interface AlbumCoverProps {
 
 export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     if (!src) return;
@@ -18,6 +19,11 @@ export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
     const img = new Image();
     img.onload = () => {
       setIsLoaded(true);
+      setLoadError(false);
+    };
+    img.onerror = () => {
+      setLoadError(true);
+      console.error('AlbumCover: Failed to load image:', src);
     };
     img.src = src;
   }, [src]);
@@ -28,10 +34,21 @@ export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
         <>
           {/* 模糊背景填充 - 当图片比例不符时 */}
           <div 
-            className="absolute inset-0 bg-cover bg-center scale-110 opacity-80"
+            className="absolute inset-0 bg-cover bg-center scale-110 opacity-90"
             style={{
               backgroundImage: `url(${src})`,
-              filter: 'blur(16px)',
+              filter: 'blur(20px)',
+              transform: 'scale(1.1)',
+              WebkitFilter: 'blur(20px)', // Safari 支持
+            }}
+          />
+          
+          {/* 备用模糊背景 - 如果 filter 不工作 */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center scale-110 opacity-70"
+            style={{
+              backgroundImage: `url(${src})`,
+              transform: 'scale(1.2)',
             }}
           />
           
