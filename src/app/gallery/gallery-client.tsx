@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Album } from '@/types/gallery';
 import { Images, Calendar, Tag } from 'lucide-react';
+import { AlbumCover } from './album-cover';
 
 interface GalleryClientProps {
   albums: Album[];
@@ -36,25 +37,12 @@ export function GalleryClient({ albums }: GalleryClientProps) {
               href={`/gallery/${album.slug}`}
               className="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
             >
-              {/* 相册封面 */}
-              <div className="relative w-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center" style={{ minHeight: '200px' }}>
-                {album.cover ? (
-                  <img
-                    src={album.cover}
-                    alt={album.name}
-                    className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                    style={{
-                      maxHeight: '180px',
-                      maxWidth: '100%'
-                    }}
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <Images className="h-16 w-16 text-gray-400" />
-                  </div>
-                )}
-              </div>
+              {/* 智能相册封面 */}
+              <AlbumCover 
+                src={album.cover || ''} 
+                alt={album.name} 
+                name={album.name} 
+              />
 
               {/* 相册信息 */}
               <div className="p-4">
