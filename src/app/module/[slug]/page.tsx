@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, BookOpen, Notebook, FileText, ExternalLink } from 'lucide-react';
+import { ArrowLeft, BookOpen, Notebook, FileText, ExternalLink, Images } from 'lucide-react';
 import { getAllPosts, getAllNotes, getAllResources } from '@/lib/markdown';
+import { getAllAlbums } from '@/lib/gallery';
 import modulesData from '@/content/modules.json';
+import type { ModulesData } from '@/types';
 
 interface ModulePageProps {
   params: {
@@ -12,7 +14,7 @@ interface ModulePageProps {
 
 export default function ModulePage({ params }: ModulePageProps) {
   const moduleKey = decodeURIComponent(params.slug);
-  const moduleData = modulesData[moduleKey as keyof typeof modulesData];
+  const moduleData = (modulesData as ModulesData)[moduleKey];
 
   if (!moduleData) {
     notFound();
@@ -22,16 +24,20 @@ export default function ModulePage({ params }: ModulePageProps) {
   const allPosts = getAllPosts();
   const allNotes = getAllNotes();
   const allResources = getAllResources();
+  const allAlbums = getAllAlbums();
 
   // 过滤出属于该模块的内容
   const modulePosts = allPosts.filter(post => 
-    moduleData.posts.includes(post.slug) || post.tags.includes(moduleData.name)
+    (moduleData.posts && moduleData.posts.includes(post.slug)) || post.tags.includes(moduleData.name)
   );
   const moduleNotes = allNotes.filter(note => 
-    moduleData.notes.includes(note.slug) || note.tags.includes(moduleData.name)
+    (moduleData.notes && moduleData.notes.includes(note.slug)) || note.tags.includes(moduleData.name)
   );
   const moduleResources = allResources.filter(resource => 
-    moduleData.resources.includes(resource.slug) || resource.tags.includes(moduleData.name)
+    (moduleData.resources && moduleData.resources.includes(resource.slug)) || resource.tags.includes(moduleData.name)
+  );
+  const moduleAlbums = allAlbums.filter(album => 
+    moduleData.albums && moduleData.albums.includes(album.slug)
   );
 
   return (
@@ -157,8 +163,92 @@ export default function ModulePage({ params }: ModulePageProps) {
         </section>
       )}
 
+      {/* 相册集部分 */}
+      {moduleAlbums.length > 0 && (
+        <section className="mb-12">
+          <div className="flex items-center gap-2 mb-6">
+            <Images className="h-6 w-6 text-pink-600" />
+            <h2 className="text-2xl font-bold">相册集</h2>
+            <span className="text-sm text-gray-500 dark:text-gray-400">({moduleAlbums.length})</span>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {moduleAlbums.map((album) => (
+              <Link key={album.slug} href={`/gallery/${album.slug}`} className="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-pink-300 dark:hover:border-pink-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+                {/* 相册封面 */}
+                <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
+                  {album.cover ? (
+                    <>
+                      {/* 模糊背景填充 */}
+                      <div 
+                        className="absolute inset-0 bg-cover bg-center scale-110 opacity-80"
+                        style={{
+                          backgroundImage: `url(${album.cover})`,
+                          filter: 'blur(16px)',
+                        }}
+                      />
+                      
+                      {/* 背景图片 */}
+                      <img
+                        src={album.cover}
+                        alt={album.name}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      
+                      {/* 半透明蒙版 */}
+                      <div className="absolute inset-0 bg-black/15 dark:bg-black/25 transition-opacity duration-300 group-hover:bg-black/10 dark:group-hover:bg-black/20" />
+                      
+                      {/* 前景图片 */}
+                      <div className="absolute inset-0 flex items-center justify-center p-4">
+                        <img
+                          src={album.cover}
+                          alt={album.name}
+                          className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+                          loading="lazy"
+                          style={{
+                            maxHeight: '120px',
+                            maxWidth: '100%'
+                          }}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Images className="h-16 w-16 text-gray-400" />
+                    </div>
+                  )}
+                </div>
+                
+                {/* 相册信息 */}
+                <div className="p-6 bg-white dark:bg-gray-900">
+                  <h3 className="text-lg font-semibold mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+                    {album.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    {album.description}
+                  </p>
+                  <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                    <span>{album.createdAt}</span>
+                    <span>{album.imageCount} 张照片</span>
+                  </div>
+                  {album.tags && album.tags.length > 0 && (
+                    <div className="flex gap-2 mt-3">
+                      {album.tags.slice(0, 3).map((tag) => (
+                        <span key={tag} className="px-2 py-1 bg-pink-100 dark:bg-pink-900/20 text-pink-600 dark:text-pink-400 text-xs rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* 空状态 */}
-      {modulePosts.length === 0 && moduleNotes.length === 0 && moduleResources.length === 0 && (
+      {modulePosts.length === 0 && moduleNotes.length === 0 && moduleResources.length === 0 && moduleAlbums.length === 0 && (
         <div className="text-center py-16">
           <BookOpen className="h-16 w-16 mx-auto mb-4 opacity-50 text-gray-400" />
           <p className="text-gray-500 dark:text-gray-400 mb-4">该模块还没有内容</p>

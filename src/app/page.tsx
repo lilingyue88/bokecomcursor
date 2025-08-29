@@ -1,18 +1,26 @@
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Notebook, Images, Rss, ExternalLink, Star, TrendingUp } from 'lucide-react';
+import { ArrowRight, BookOpen, Notebook, Images, Rss, ExternalLink, Star, TrendingUp, Heart } from 'lucide-react';
 import { getAllPosts } from '@/lib/markdown';
+import { getAllAlbums } from '@/lib/gallery';
 
 export default function HomePage() {
-  // 获取所有文章（服务器端）
+  // 获取所有文章和相册集（服务器端）
   const allPosts = getAllPosts();
+  const allAlbums = getAllAlbums();
   
   // 获取最近的文章
   const recentPosts = allPosts.slice(0, 4);
   
-  // 统计各系列文章数量
+  // 统计各系列文章和相册集数量
   const techPosts = allPosts.filter(post => post.tags.includes('技术探索')).length;
   const growthPosts = allPosts.filter(post => post.tags.includes('成长记录')).length;
   const bookPosts = allPosts.filter(post => post.tags.includes('读书笔记')).length;
+  
+  // 统计相册集数量
+  const techAlbums = allAlbums.filter(album => album.category === '技术探索' || album.tags.includes('技术探索')).length;
+  const growthAlbums = allAlbums.filter(album => album.category === '成长记录' || album.tags.includes('成长记录')).length;
+  const bookAlbums = allAlbums.filter(album => album.category === '读书笔记' || album.tags.includes('读书笔记')).length;
+  const lifeAlbums = allAlbums.filter(album => album.category === '生活瞬间' || album.tags.includes('生活瞬间')).length;
 
   return (
     <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
@@ -95,7 +103,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-lg font-semibold mb-2">技术探索</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">分享前沿技术、架构设计、性能优化等深度技术内容，记录学习过程中的思考与收获</p>
-            <div className="text-xs text-gray-500 dark:text-gray-400">{techPosts} 篇文章</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">{techPosts} 篇文章 · {techAlbums} 个相册</div>
           </Link>
           
           <Link href="/module/成长记录" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-green-300 dark:hover:border-green-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
@@ -104,7 +112,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-lg font-semibold mb-2">成长记录</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">记录技术学习历程、项目经验总结、职业发展思考，分享个人成长路上的心得与感悟</p>
-            <div className="text-xs text-gray-500 dark:text-gray-400">{growthPosts} 篇文章</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">{growthPosts} 篇文章 · {growthAlbums} 个相册</div>
           </Link>
           
           <Link href="/module/读书笔记" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
@@ -113,7 +121,16 @@ export default function HomePage() {
             </div>
             <h3 className="text-lg font-semibold mb-2">读书笔记</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">好书推荐与阅读感悟，技术书籍精读笔记，经典文章深度解析，让知识更有价值</p>
-            <div className="text-xs text-gray-500 dark:text-gray-400">{bookPosts} 篇文章</div>
+            <div className="text-xs text-gray-500 dark:text-gray-400">{bookPosts} 篇文章 · {bookAlbums} 个相册</div>
+          </Link>
+          
+          <Link href="/module/生活瞬间" className="group rounded-xl border border-gray-200 dark:border-gray-800 p-6 text-center hover:border-pink-300 dark:hover:border-pink-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-500 to-red-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Heart className="h-8 w-8 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">生活瞬间</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">日常生活和工作中的精彩瞬间，记录美好时光，分享生活中的点点滴滴</p>
+            <div className="text-xs text-gray-500 dark:text-gray-400">{lifeAlbums} 个相册</div>
           </Link>
         </div>
       </section>

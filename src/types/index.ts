@@ -60,3 +60,18 @@ export interface NavigationItem {
   href: string;
   target?: '_self' | '_blank';
 }
+
+export interface ModuleData {
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+  posts?: string[];
+  notes?: string[];
+  resources?: string[];
+  albums?: string[];
+}
+
+export interface ModulesData {
+  [key: string]: ModuleData;
+}

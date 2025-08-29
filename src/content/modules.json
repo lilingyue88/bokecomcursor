@@ -6,7 +6,8 @@
     "color": "from-blue-500 to-purple-600",
     "posts": ["react-performance", "nextjs-optimization"],
     "notes": ["typescript-tips", "git-workflow"],
-    "resources": ["frontend-tools", "backend-frameworks"]
+    "resources": ["frontend-tools", "backend-frameworks"],
+    "albums": ["tech-share"]
   },
   "成长记录": {
     "name": "成长记录",
@@ -15,7 +16,8 @@
     "color": "from-green-500 to-teal-600",
     "posts": ["career-journey", "project-lessons"],
     "notes": ["learning-notes", "skill-development"],
-    "resources": ["learning-resources", "career-guides"]
+    "resources": ["learning-resources", "career-guides"],
+    "albums": ["growth-record", "first"]
   },
   "读书笔记": {
     "name": "读书笔记",
@@ -24,6 +26,17 @@
     "color": "from-purple-500 to-pink-600",
     "posts": ["clean-code-review", "design-patterns"],
     "notes": ["book-summary", "reading-notes"],
-    "resources": ["book-recommendations", "study-materials"]
+    "resources": ["book-recommendations", "study-materials"],
+    "albums": ["reading-notes"]
+  },
+  "生活瞬间": {
+    "name": "生活瞬间",
+    "description": "日常生活和工作中的精彩瞬间，记录美好时光",
+    "icon": "Heart",
+    "color": "from-pink-500 to-red-600",
+    "posts": [],
+    "notes": [],
+    "resources": [],
+    "albums": ["life-moments"]
   }
 }
