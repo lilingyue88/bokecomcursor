@@ -24,6 +24,15 @@ export function getAllAlbums(): Album[] {
         const filePath = path.join(albumsDirectory, fileName);
         const fileContents = fs.readFileSync(filePath, 'utf8');
         const album: Album = JSON.parse(fileContents);
+        
+        // 调试信息
+        console.log(`Loading album ${fileName}:`, {
+          name: album.name,
+          cover: album.cover,
+          hasCoverStyle: !!album.coverStyle,
+          coverStyle: album.coverStyle
+        });
+        
         albums.push(album);
       } catch (error) {
         console.error(`Error reading album file ${fileName}:`, error);

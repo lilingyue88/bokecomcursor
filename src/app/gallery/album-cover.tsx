@@ -20,6 +20,18 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadError, setLoadError] = useState(false);
 
+  // 调试信息
+  useEffect(() => {
+    console.log('AlbumCover Debug:', {
+      src,
+      alt,
+      name,
+      coverStyle,
+      hasBlur: coverStyle?.blur,
+      blurIntensity: coverStyle?.blurIntensity
+    });
+  }, [src, coverStyle]);
+
   useEffect(() => {
     if (!src) return;
     
@@ -39,19 +51,17 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
     <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
       {isLoaded && src ? (
         <>
-          {/* 模糊背景填充 - 使用JSON配置 */}
-          {coverStyle?.blur && (
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${src})`,
-                filter: `blur(${coverStyle.blurIntensity})`,
-                WebkitFilter: `blur(${coverStyle.blurIntensity})`,
-                opacity: coverStyle.opacity,
-                transform: `scale(${coverStyle.scale})`,
-              }}
-            />
-          )}
+          {/* 模糊背景填充 - 强制启用 */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${src})`,
+              filter: `blur(${coverStyle?.blurIntensity || '30px'})`,
+              WebkitFilter: `blur(${coverStyle?.blurIntensity || '30px'})`,
+              opacity: coverStyle?.opacity || '0.8',
+              transform: `scale(${coverStyle?.scale || '1.2'})`,
+            }}
+          />
           
           {/* 备用模糊背景 - 如果 filter 不工作 */}
           <div 
