@@ -6,9 +6,9 @@
   "cover": "/images/life-moments/cover.jpg",
   "coverStyle": {
     "blur": true,
-    "blurIntensity": "20px",
-    "opacity": "0.9",
-    "scale": "1.1",
+    "blurIntensity": "30px",
+    "opacity": "0.8",
+    "scale": "1.2",
     "overlay": "rgba(0,0,0,0.2)"
   },
   "category": "生活",
