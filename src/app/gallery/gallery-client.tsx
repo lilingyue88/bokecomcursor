@@ -35,7 +35,7 @@ export function GalleryClient({ albums }: GalleryClientProps) {
             <Link
               key={album.id}
               href={`/gallery/${album.slug}`}
-              className="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
+              className="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 flex flex-col"
             >
               {/* 智能相册封面 */}
               <AlbumCover 
@@ -44,17 +44,17 @@ export function GalleryClient({ albums }: GalleryClientProps) {
                 name={album.name} 
               />
 
-              {/* 相册信息 */}
-              <div className="p-4">
+              {/* 相册信息 - 自适应高度 */}
+              <div className="p-4 flex-1 flex flex-col">
                 <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {album.name}
                 </h3>
                 
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 flex-1">
                   {album.description}
                 </p>
 
-                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
                   <div className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
                     <span>{album.createdAt}</span>
@@ -67,7 +67,7 @@ export function GalleryClient({ albums }: GalleryClientProps) {
                 </div>
 
                 {/* 标签 */}
-                <div className="flex gap-1 mt-3">
+                <div className="flex gap-1">
                   {album.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}

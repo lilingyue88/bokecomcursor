@@ -33,11 +33,11 @@ export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
   const getContainerStyle = () => {
     switch (imageRatio) {
       case 'landscape':
-        return { minHeight: '160px', padding: '20px 16px' };
+        return { padding: '16px 12px' };
       case 'portrait':
-        return { minHeight: '280px', padding: '16px 20px' };
+        return { padding: '12px 16px' };
       default:
-        return { minHeight: '220px', padding: '20px' };
+        return { padding: '16px' };
     }
   };
 
@@ -45,11 +45,11 @@ export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
   const getImageStyle = () => {
     switch (imageRatio) {
       case 'landscape':
-        return { maxHeight: '120px', maxWidth: '100%' };
+        return { maxHeight: '140px', maxWidth: '100%' };
       case 'portrait':
-        return { maxHeight: '240px', maxWidth: '100%' };
+        return { maxHeight: '200px', maxWidth: '100%' };
       default:
-        return { maxHeight: '180px', maxWidth: '100%' };
+        return { maxHeight: '160px', maxWidth: '100%' };
     }
   };
 
