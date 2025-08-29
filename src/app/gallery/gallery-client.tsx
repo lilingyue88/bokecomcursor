@@ -35,7 +35,7 @@ export function GalleryClient({ albums }: GalleryClientProps) {
             <Link
               key={album.id}
               href={`/gallery/${album.slug}`}
-              className="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg hover:-translate-y-1 flex flex-col"
+              className="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 shadow-lg"
             >
               {/* 智能相册封面 */}
               <AlbumCover 
@@ -44,40 +44,40 @@ export function GalleryClient({ albums }: GalleryClientProps) {
                 name={album.name} 
               />
 
-              {/* 相册信息 - 自适应高度 */}
-              <div className="p-4 flex-1 flex flex-col">
-                <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {/* 统一的标题区设计 - 固定白底/浅灰底 */}
+              <div className="p-6 bg-white dark:bg-gray-900">
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {album.name}
                 </h3>
                 
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 flex-1">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                   {album.description}
                 </p>
 
-                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-                  <div className="flex items-center gap-1">
+                <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" />
                     <span>{album.createdAt}</span>
                   </div>
                   
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-2">
                     <Images className="h-4 w-4" />
                     <span>{album.imageCount} 张</span>
                   </div>
                 </div>
 
                 {/* 标签 */}
-                <div className="flex gap-1">
+                <div className="flex gap-2">
                   {album.tags.slice(0, 2).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full"
+                      className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full border border-gray-200 dark:border-gray-700"
                     >
                       {tag}
                     </span>
                   ))}
                   {album.tags.length > 2 && (
-                    <span className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full">
+                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 text-xs rounded-full border border-gray-200 dark:border-gray-700">
                       +{album.tags.length - 2}
                     </span>
                   )}

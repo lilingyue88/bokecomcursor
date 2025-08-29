@@ -10,64 +10,58 @@ interface AlbumCoverProps {
 }
 
 export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
-  const [imageRatio, setImageRatio] = useState<'landscape' | 'portrait' | 'square'>('square');
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    if (!src) return;
+    
     const img = new Image();
     img.onload = () => {
-      const ratio = img.width / img.height;
-      if (ratio > 1.2) {
-        setImageRatio('landscape');
-      } else if (ratio < 0.8) {
-        setImageRatio('portrait');
-      } else {
-        setImageRatio('square');
-      }
       setIsLoaded(true);
     };
     img.src = src;
   }, [src]);
 
-  // 根据图片比例调整容器样式
-  const getContainerStyle = () => {
-    switch (imageRatio) {
-      case 'landscape':
-        return { padding: '16px 12px' };
-      case 'portrait':
-        return { padding: '12px 16px' };
-      default:
-        return { padding: '16px' };
-    }
-  };
-
-  // 根据图片比例调整图片样式
-  const getImageStyle = () => {
-    switch (imageRatio) {
-      case 'landscape':
-        return { maxHeight: '140px', maxWidth: '100%' };
-      case 'portrait':
-        return { maxHeight: '200px', maxWidth: '100%' };
-      default:
-        return { maxHeight: '160px', maxWidth: '100%' };
-    }
-  };
-
   return (
-    <div 
-      className="relative w-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center"
-      style={getContainerStyle()}
-    >
-      {isLoaded ? (
-        <img
-          src={src}
-          alt={alt}
-          className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
-          loading="lazy"
-          style={getImageStyle()}
-        />
+    <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
+      {isLoaded && src ? (
+        <>
+          {/* 背景图片 - 按比例缩放并居中 */}
+          <img
+            src={src}
+            alt={alt}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          
+          {/* 半透明蒙版 */}
+          <div className="absolute inset-0 bg-black/15 dark:bg-black/25 transition-opacity duration-300 group-hover:bg-black/10 dark:group-hover:bg-black/20" />
+          
+          {/* 背景模糊填充 - 当图片比例不符时 */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center blur-sm scale-110"
+            style={{
+              backgroundImage: `url(${src})`,
+              filter: 'blur(8px)',
+            }}
+          />
+          
+          {/* 前景图片 - 居中显示 */}
+          <div className="absolute inset-0 flex items-center justify-center p-4">
+            <img
+              src={src}
+              alt={alt}
+              className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+              loading="lazy"
+              style={{
+                maxHeight: '120px',
+                maxWidth: '100%'
+              }}
+            />
+          </div>
+        </>
       ) : (
-        <div className="w-full h-32 flex items-center justify-center">
+        <div className="w-full h-full flex items-center justify-center">
           <Images className="h-16 w-16 text-gray-400" />
         </div>
       )}
