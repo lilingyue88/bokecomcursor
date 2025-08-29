@@ -26,6 +26,15 @@ export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
     <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
       {isLoaded && src ? (
         <>
+          {/* 模糊背景填充 - 当图片比例不符时 */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center scale-110 opacity-80"
+            style={{
+              backgroundImage: `url(${src})`,
+              filter: 'blur(16px)',
+            }}
+          />
+          
           {/* 背景图片 - 按比例缩放并居中 */}
           <img
             src={src}
@@ -36,15 +45,6 @@ export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
           
           {/* 半透明蒙版 */}
           <div className="absolute inset-0 bg-black/15 dark:bg-black/25 transition-opacity duration-300 group-hover:bg-black/10 dark:group-hover:bg-black/20" />
-          
-          {/* 背景模糊填充 - 当图片比例不符时 */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center blur-sm scale-110"
-            style={{
-              backgroundImage: `url(${src})`,
-              filter: 'blur(8px)',
-            }}
-          />
           
           {/* 前景图片 - 居中显示 */}
           <div className="absolute inset-0 flex items-center justify-center p-4">
