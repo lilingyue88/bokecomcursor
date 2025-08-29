@@ -4,6 +4,13 @@
   "slug": "reading-notes",
   "description": "好书推荐与阅读感悟，技术书籍精读笔记",
   "cover": "/images/reading-notes/cover.jpg",
+  "coverStyle": {
+    "blur": true,
+    "blurIntensity": "20px",
+    "opacity": "0.9",
+    "scale": "1.1",
+    "overlay": "rgba(0,0,0,0.2)"
+  },
   "category": "读书",
   "tags": ["读书", "笔记", "感悟"],
   "createdAt": "2025-01-20",

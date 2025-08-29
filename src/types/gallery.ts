@@ -10,12 +10,21 @@ export interface GalleryImage {
   createdAt: string;
 }
 
+export interface CoverStyle {
+  blur: boolean;
+  blurIntensity: string;
+  opacity: string;
+  scale: string;
+  overlay: string;
+}
+
 export interface Album {
   id: string;
   name: string;
   slug: string;
   description: string;
   cover: string;
+  coverStyle?: CoverStyle;
   category: string;
   tags: string[];
   createdAt: string;

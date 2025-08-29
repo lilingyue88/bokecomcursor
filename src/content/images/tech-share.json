@@ -4,6 +4,13 @@
   "slug": "tech-share",
   "description": "技术会议和分享活动的照片记录",
   "cover": "/images/tech-share/cover.jpg",
+  "coverStyle": {
+    "blur": true,
+    "blurIntensity": "20px",
+    "opacity": "0.9",
+    "scale": "1.1",
+    "overlay": "rgba(0,0,0,0.2)"
+  },
   "category": "技术",
   "tags": [
     "技术",

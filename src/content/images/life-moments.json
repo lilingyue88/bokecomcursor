@@ -4,6 +4,13 @@
   "slug": "life-moments",
   "description": "日常生活和工作中的精彩瞬间，记录美好时光",
   "cover": "/images/life-moments/cover.jpg",
+  "coverStyle": {
+    "blur": true,
+    "blurIntensity": "20px",
+    "opacity": "0.9",
+    "scale": "1.1",
+    "overlay": "rgba(0,2)"
+  },
   "category": "生活",
   "tags": ["生活", "工作", "瞬间"],
   "createdAt": "2025-01-20",

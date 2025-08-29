@@ -7,9 +7,16 @@ interface AlbumCoverProps {
   src: string;
   alt: string;
   name: string;
+  coverStyle?: {
+    blur: boolean;
+    blurIntensity: string;
+    opacity: string;
+    scale: string;
+    overlay: string;
+  };
 }
 
-export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
+export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [loadError, setLoadError] = useState(false);
 
@@ -32,22 +39,26 @@ export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
     <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
       {isLoaded && src ? (
         <>
-          {/* 模糊背景填充 - 当图片比例不符时 */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center scale-110 opacity-90"
-            style={{
-              backgroundImage: `url(${src})`,
-              filter: 'blur(20px)',
-              transform: 'scale(1.1)',
-              WebkitFilter: 'blur(20px)', // Safari 支持
-            }}
-          />
+          {/* 模糊背景填充 - 使用JSON配置 */}
+          {coverStyle?.blur && (
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${src})`,
+                filter: `blur(${coverStyle.blurIntensity})`,
+                WebkitFilter: `blur(${coverStyle.blurIntensity})`,
+                opacity: coverStyle.opacity,
+                transform: `scale(${coverStyle.scale})`,
+              }}
+            />
+          )}
           
           {/* 备用模糊背景 - 如果 filter 不工作 */}
           <div 
-            className="absolute inset-0 bg-cover bg-center scale-110 opacity-70"
+            className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: `url(${src})`,
+              opacity: '0.7',
               transform: 'scale(1.2)',
             }}
           />
@@ -60,8 +71,13 @@ export function AlbumCover({ src, alt, name }: AlbumCoverProps) {
             loading="lazy"
           />
           
-          {/* 半透明蒙版 */}
-          <div className="absolute inset-0 bg-black/15 dark:bg-black/25 transition-opacity duration-300 group-hover:bg-black/10 dark:group-hover:bg-black/20" />
+          {/* 半透明蒙版 - 使用JSON配置 */}
+          <div 
+            className="absolute inset-0 transition-opacity duration-300"
+            style={{
+              backgroundColor: coverStyle?.overlay || 'rgba(0,0,0,0.2)',
+            }}
+          />
           
           {/* 前景图片 - 居中显示 */}
           <div className="absolute inset-0 flex items-center justify-center p-4">

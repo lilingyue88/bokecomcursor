@@ -42,6 +42,7 @@ export function GalleryClient({ albums }: GalleryClientProps) {
                 src={album.cover || ''} 
                 alt={album.name} 
                 name={album.name} 
+                coverStyle={album.coverStyle}
               />
 
               {/* 统一的标题区设计 - 固定白底/浅灰底 */}

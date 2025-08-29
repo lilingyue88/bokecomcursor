@@ -4,6 +4,13 @@
   "slug": "growth-record",
   "description": "技术学习历程、项目经验总结、职业发展思考",
   "cover": "/images/growth-record/cover.jpg",
+  "coverStyle": {
+    "blur": true,
+    "blurIntensity": "20px",
+    "opacity": "0.9",
+    "scale": "1.1",
+    "overlay": "rgba(0,0,0,0.2)"
+  },
   "category": "成长",
   "tags": ["成长", "学习", "经验"],
   "createdAt": "2025-01-20",

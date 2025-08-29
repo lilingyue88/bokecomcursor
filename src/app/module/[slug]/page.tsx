@@ -180,6 +180,7 @@ export default function ModulePage({ params }: ModulePageProps) {
                   src={album.cover || ''} 
                   alt={album.name} 
                   name={album.name} 
+                  coverStyle={album.coverStyle}
                 />
                 
                 {/* 相册信息 */}
