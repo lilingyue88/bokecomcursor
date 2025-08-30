@@ -54,9 +54,9 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
     <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
       {isLoaded && src ? (
         <>
-          {/* 模糊背景填充 - 强制使用JSON配置 */}
+          {/* 模糊背景填充 - 强制使用JSON配置，确保在最底层 */}
           <div 
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center z-0"
             style={{
               backgroundImage: `url(${src})`,
               filter: `blur(${coverStyle?.blurIntensity})`,
@@ -64,17 +64,23 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
               opacity: coverStyle?.opacity,
               transform: `scale(${coverStyle?.scale})`,
             }}
+            data-debug={JSON.stringify({
+              blurIntensity: coverStyle?.blurIntensity,
+              opacity: coverStyle?.opacity,
+              scale: coverStyle?.scale,
+              overlay: coverStyle?.overlay
+            })}
           />
           
-          {/* 半透明蒙版 - 使用JSON配置 */}
+          {/* 半透明蒙版 - 使用JSON配置，在模糊背景之上 */}
           <div 
-            className="absolute inset-0 transition-opacity duration-300"
+            className="absolute inset-0 transition-opacity duration-300 z-5"
             style={{
               backgroundColor: coverStyle?.overlay || 'rgba(0,0,0,0.2)',
             }}
           />
           
-          {/* 前景图片 - 居中显示，确保不覆盖模糊背景 */}
+          {/* 前景图片 - 居中显示，在最上层 */}
           <div className="absolute inset-0 flex items-center justify-center p-4 z-10">
             <img
               src={src}
