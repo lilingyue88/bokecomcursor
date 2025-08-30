@@ -6,10 +6,10 @@
   "cover": "/images/first/DSC_0715(1).jpg",
   "coverStyle": {
     "blur": true,
-    "blurIntensity": "30px",
-    "opacity": "0.1",
-    "scale": "1.6",
-    "overlay": "rgba(0,0,0,0.2)"
+    "blurIntensity": "50px",
+    "opacity": "0.6",
+    "scale": "1.5",
+    "overlay": "rgba(0,0,0,0.4)"
   },
   "category": "成长",
   "tags": ["海滩"],

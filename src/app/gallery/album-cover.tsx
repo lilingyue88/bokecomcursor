@@ -28,7 +28,10 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
       name,
       coverStyle,
       hasBlur: coverStyle?.blur,
-      blurIntensity: coverStyle?.blurIntensity
+      blurIntensity: coverStyle?.blurIntensity,
+      opacity: coverStyle?.opacity,
+      scale: coverStyle?.scale,
+      overlay: coverStyle?.overlay
     });
   }, [src, coverStyle]);
 
@@ -61,6 +64,11 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
               opacity: coverStyle?.opacity || '0.8',
               transform: `scale(${coverStyle?.scale || '1.2'})`,
             }}
+            data-debug={JSON.stringify({
+              blurIntensity: coverStyle?.blurIntensity || '30px',
+              opacity: coverStyle?.opacity || '0.8',
+              scale: coverStyle?.scale || '1.2'
+            })}
           />
           
           {/* 背景图片 - 按比例缩放并居中 */}
