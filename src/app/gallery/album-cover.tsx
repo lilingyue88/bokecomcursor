@@ -28,7 +28,10 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
       name,
       coverStyle,
       hasBlur: coverStyle?.blur,
-      blurIntensity: coverStyle?.blurIntensity
+      blurIntensity: coverStyle?.blurIntensity,
+      opacity: coverStyle?.opacity,
+      scale: coverStyle?.scale,
+      overlay: coverStyle?.overlay
     });
   }, [src, coverStyle]);
 
@@ -51,15 +54,15 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
     <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
       {isLoaded && src ? (
         <>
-          {/* 模糊背景填充 - 使用JSON配置 */}
+          {/* 模糊背景填充 - 强制使用JSON配置 */}
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
               backgroundImage: `url(${src})`,
-              filter: `blur(${coverStyle?.blurIntensity || '30px'})`,
-              WebkitFilter: `blur(${coverStyle?.blurIntensity || '30px'})`,
-              opacity: coverStyle?.opacity || '0.8',
-              transform: `scale(${coverStyle?.scale || '1.2'})`,
+              filter: `blur(${coverStyle?.blurIntensity})`,
+              WebkitFilter: `blur(${coverStyle?.blurIntensity})`,
+              opacity: coverStyle?.opacity,
+              transform: `scale(${coverStyle?.scale})`,
             }}
           />
           
@@ -71,8 +74,8 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
             }}
           />
           
-          {/* 前景图片 - 居中显示 */}
-          <div className="absolute inset-0 flex items-center justify-center p-4">
+          {/* 前景图片 - 居中显示，确保不覆盖模糊背景 */}
+          <div className="absolute inset-0 flex items-center justify-center p-4 z-10">
             <img
               src={src}
               alt={alt}
