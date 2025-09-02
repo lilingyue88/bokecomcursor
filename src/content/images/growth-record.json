@@ -6,7 +6,7 @@
   "cover": "/images/growth-record/cover.jpg",
   "coverStyle": {
     "blur": true,
-    "blurIntensity": "1px",
+    "blurIntensity": "10px",
     "opacity": "0.6",
     "scale": "1.2",
     "overlay": "rgba(0,0,0,0.2)"
