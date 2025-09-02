@@ -74,7 +74,7 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
           <div 
             className="absolute inset-0 transition-opacity duration-300"
             style={{
-              backgroundColor: coverStyle?.overlay || 'rgba(0,0,0,0.2)',
+              backgroundColor: coverStyle?.overlay,
               zIndex: 2,
             }}
           />
