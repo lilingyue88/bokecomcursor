@@ -6,7 +6,7 @@
   "cover": "/images/tech-share/cover.jpg",
   "coverStyle": {
     "blur": true,
-    "blurIntensity": "1px",
+    "blurIntensity": "30px",
     "opacity": "0.8",
     "scale": "1.2",
     "overlay": "rgba(0,0,0,0.2)"
