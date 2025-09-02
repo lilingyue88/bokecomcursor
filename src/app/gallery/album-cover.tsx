@@ -26,9 +26,11 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
       coverStyle,
       hasBlur: coverStyle?.blur,
       blurIntensity: coverStyle?.blurIntensity,
+      actualBlur: coverStyle?.blurIntensity || '20px',
       opacity: coverStyle?.opacity,
       scale: coverStyle?.scale,
-      overlay: coverStyle?.overlay
+      overlay: coverStyle?.overlay,
+      filterStyle: `blur(${coverStyle?.blurIntensity || '20px'})`
     });
   }, [src, coverStyle]);
 
@@ -45,8 +47,8 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                filter: `blur(${coverStyle?.blurIntensity})`,
-                WebkitFilter: `blur(${coverStyle?.blurIntensity})`,
+                filter: `blur(${coverStyle?.blurIntensity || '20px'})`,
+                WebkitFilter: `blur(${coverStyle?.blurIntensity || '20px'})`,
                 opacity: coverStyle?.opacity,
                 transform: `scale(${coverStyle?.scale})`,
                 zIndex: 1,
