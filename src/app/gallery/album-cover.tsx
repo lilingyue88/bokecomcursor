@@ -54,34 +54,33 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
     <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
       {isLoaded && src ? (
         <>
-          {/* 模糊背景填充 - 强制使用JSON配置，确保在最底层 */}
+          {/* 模糊背景 - 封面照片放大并模糊处理 */}
           <div 
-            className="absolute inset-0 bg-cover bg-center z-0"
+            className="absolute inset-0"
             style={{
               backgroundImage: `url(${src})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
               filter: `blur(${coverStyle?.blurIntensity})`,
               WebkitFilter: `blur(${coverStyle?.blurIntensity})`,
               opacity: coverStyle?.opacity,
               transform: `scale(${coverStyle?.scale})`,
+              zIndex: 1,
             }}
-            data-debug={JSON.stringify({
-              blurIntensity: coverStyle?.blurIntensity,
-              opacity: coverStyle?.opacity,
-              scale: coverStyle?.scale,
-              overlay: coverStyle?.overlay
-            })}
           />
           
-          {/* 半透明蒙版 - 使用JSON配置，在模糊背景之上 */}
+          {/* 半透明蒙版 - 使用JSON配置 */}
           <div 
-            className="absolute inset-0 transition-opacity duration-300 z-5"
+            className="absolute inset-0 transition-opacity duration-300"
             style={{
               backgroundColor: coverStyle?.overlay || 'rgba(0,0,0,0.2)',
+              zIndex: 2,
             }}
           />
           
-          {/* 前景图片 - 居中显示，在最上层 */}
-          <div className="absolute inset-0 flex items-center justify-center p-4 z-10">
+          {/* 前景图片 - 居中显示，在模糊背景之上 */}
+          <div className="absolute inset-0 flex items-center justify-center p-4" style={{ zIndex: 3 }}>
             <img
               src={src}
               alt={alt}
