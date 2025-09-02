@@ -63,10 +63,10 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                filter: `blur(${coverStyle?.blurIntensity})`,
-                WebkitFilter: `blur(${coverStyle?.blurIntensity})`,
-                opacity: coverStyle?.opacity,
-                transform: `scale(${coverStyle?.scale})`,
+                filter: `blur(${coverStyle?.blurIntensity}) !important`,
+                WebkitFilter: `blur(${coverStyle?.blurIntensity}) !important`,
+                opacity: `${coverStyle?.opacity} !important`,
+                transform: `scale(${coverStyle?.scale}) !important`,
                 zIndex: 1,
               }}
             />
@@ -77,7 +77,7 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
             <div 
               className="absolute inset-0 transition-opacity duration-300"
               style={{
-                backgroundColor: coverStyle?.overlay,
+                backgroundColor: `${coverStyle?.overlay} !important`,
                 zIndex: 2,
               }}
             />
