@@ -6,7 +6,7 @@
   "cover": "/images/first/cover.jpg",
   "coverStyle": {
     "blur": true,
-    "blurIntensity": "10px",
+    "blurIntensity": "1px",
     "opacity": "0.8",
     "scale": "1.2",
     "overlay": "rgba(0,0,0,0.2)"
