@@ -3,7 +3,7 @@
   "name": "读书笔记",
   "slug": "reading-notes",
   "description": "好书推荐与阅读感悟，技术书籍精读笔记",
-  "cover": "/images/first/DSC_0966(1).jpg",
+  "cover": "/images/reading-notes/cover.jpg",
   "coverStyle": {
     "blur": true,
     "blurIntensity": "30px",

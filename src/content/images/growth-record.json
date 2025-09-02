@@ -3,7 +3,7 @@
   "name": "成长记录",
   "slug": "growth-record",
   "description": "技术学习历程、项目经验总结、职业发展思考",
-  "cover": "/images/first/DSC_0715(1).jpg",
+  "cover": "/images/growth-record/cover.jpg",
   "coverStyle": {
     "blur": true,
     "blurIntensity": "30px",

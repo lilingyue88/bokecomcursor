@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Images } from 'lucide-react';
 
 interface AlbumCoverProps {
@@ -17,9 +17,6 @@ interface AlbumCoverProps {
 }
 
 export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [loadError, setLoadError] = useState(false);
-
   // 调试信息
   useEffect(() => {
     console.log('AlbumCover Debug:', {
@@ -31,30 +28,13 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
       blurIntensity: coverStyle?.blurIntensity,
       opacity: coverStyle?.opacity,
       scale: coverStyle?.scale,
-      overlay: coverStyle?.overlay,
-      isLoaded,
-      loadError
+      overlay: coverStyle?.overlay
     });
-  }, [src, coverStyle, isLoaded, loadError]);
-
-  useEffect(() => {
-    if (!src) return;
-    
-    const img = new Image();
-    img.onload = () => {
-      setIsLoaded(true);
-      setLoadError(false);
-    };
-    img.onerror = () => {
-      setLoadError(true);
-      console.error('AlbumCover: Failed to load image:', src);
-    };
-    img.src = src;
-  }, [src]);
+  }, [src, coverStyle]);
 
   return (
     <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
-      {isLoaded && src ? (
+      {src ? (
         <>
           {/* 模糊背景 - 封面照片放大并模糊处理 */}
           {coverStyle?.blur && (
@@ -116,8 +96,14 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
           )}
         </>
       ) : (
-        <div className="w-full h-full flex items-center justify-center">
-          <Images className="h-16 w-16 text-gray-400" />
+        <div className="w-full h-full flex flex-col items-center justify-center text-gray-600 dark:text-gray-400">
+          <Images className="h-16 w-16 mb-2" />
+          <p className="text-sm text-center">
+            图片路径: {src || '无路径'}
+          </p>
+          <p className="text-xs text-center mt-1">
+            {name}
+          </p>
         </div>
       )}
     </div>
