@@ -54,6 +54,15 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
 
   return (
     <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
+      {/* 强制测试蒙版 - 总是显示 */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundColor: 'rgba(0,255,0,0.3)',
+          zIndex: 1,
+        }}
+      />
+      
       {isLoaded && src ? (
         <>
           {/* 模糊背景 - 封面照片放大并模糊处理 */}
@@ -65,28 +74,28 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-                filter: `blur(${coverStyle?.blurIntensity}) !important`,
-                WebkitFilter: `blur(${coverStyle?.blurIntensity}) !important`,
-                opacity: `${coverStyle?.opacity} !important`,
-                transform: `scale(${coverStyle?.scale}) !important`,
-                zIndex: 1,
-              }}
-            />
-          )}
-          
-          {/* 半透明蒙版 - 使用JSON配置 */}
-          {coverStyle?.blur && coverStyle?.overlay && (
-            <div 
-              className="absolute inset-0 transition-opacity duration-300"
-              style={{
-                backgroundColor: `${coverStyle?.overlay} !important`,
+                filter: `blur(${coverStyle?.blurIntensity})`,
+                WebkitFilter: `blur(${coverStyle?.blurIntensity})`,
+                opacity: coverStyle?.opacity,
+                transform: `scale(${coverStyle?.scale})`,
                 zIndex: 2,
               }}
             />
           )}
           
+          {/* 半透明蒙版 - 使用JSON配置 */}
+          {coverStyle?.blur && (
+            <div 
+              className="absolute inset-0 transition-opacity duration-300"
+              style={{
+                backgroundColor: coverStyle?.overlay || 'rgba(255,0,0,0.5)',
+                zIndex: 3,
+              }}
+            />
+          )}
+          
           {/* 前景图片 - 居中显示，在模糊背景之上 */}
-          <div className="absolute inset-0 flex items-center justify-center p-4" style={{ zIndex: 3 }}>
+          <div className="absolute inset-0 flex items-center justify-center p-4" style={{ zIndex: 4 }}>
             <img
               src={src}
               alt={alt}
