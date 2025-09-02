@@ -85,25 +85,31 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
             />
           )}
           
-          {/* 前景图片 - 只在没有模糊效果时显示 */}
-          {!coverStyle?.blur && (
-            <div className="absolute inset-0 flex items-center justify-center p-4" style={{ zIndex: 3 }}>
-              <img
-                src={src}
-                alt={alt}
-                className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
-                loading="lazy"
-                style={{
-                  maxHeight: '120px',
-                  maxWidth: '100%'
-                }}
-              />
+          {/* 前景图片 - 始终显示，无论是否有模糊效果 */}
+          <div className="absolute inset-0 flex items-center justify-center p-4" style={{ zIndex: 3 }}>
+            <img
+              src={src}
+              alt={alt}
+              className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+              loading="lazy"
+              style={{
+                maxHeight: coverStyle?.blur ? '100px' : '120px',
+                maxWidth: '100%'
+              }}
+            />
+          </div>
+          
+          {/* 相册信息 - 在有模糊背景时显示在底部 */}
+          {coverStyle?.blur && (
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white bg-gradient-to-t from-black/50 to-transparent" style={{ zIndex: 4 }}>
+              <h3 className="text-lg font-bold mb-1">{name}</h3>
+              <p className="text-sm opacity-90">点击查看详情</p>
             </div>
           )}
           
-          {/* 相册信息 - 在模糊背景之上显示 */}
-          {coverStyle?.blur && (
-            <div className="absolute inset-0 flex flex-col justify-end p-4 text-white" style={{ zIndex: 3 }}>
+          {/* 相册信息 - 在没有模糊背景时显示在底部 */}
+          {!coverStyle?.blur && (
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-gray-800 dark:text-white bg-gradient-to-t from-white/80 to-transparent dark:from-black/50" style={{ zIndex: 4 }}>
               <h3 className="text-lg font-bold mb-1">{name}</h3>
               <p className="text-sm opacity-90">点击查看详情</p>
             </div>
