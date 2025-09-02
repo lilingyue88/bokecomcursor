@@ -6,15 +6,15 @@
   "cover": "/images/first/DSC_0385(1).jpg",
   "coverStyle": {
     "blur": true,
-    "blurIntensity": "50px",
-    "opacity": "0.3",
-    "scale": "2.0",
-    "overlay": "rgba(0,255,0,0.8)"
+    "blurIntensity": "10px",
+    "opacity": "0.5",
+    "scale": "1.1",
+    "overlay": "rgba(255,0,0,0.5)"
   },
   "category": "成长",
   "tags": ["海滩"],
   "createdAt": "2025-01-20",
-  "imageCount": 1,
+  "imageCount": 7,
   "images": [
     {
       "id": "dsc0385",

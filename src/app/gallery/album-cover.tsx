@@ -31,9 +31,11 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
       blurIntensity: coverStyle?.blurIntensity,
       opacity: coverStyle?.opacity,
       scale: coverStyle?.scale,
-      overlay: coverStyle?.overlay
+      overlay: coverStyle?.overlay,
+      isLoaded,
+      loadError
     });
-  }, [src, coverStyle]);
+  }, [src, coverStyle, isLoaded, loadError]);
 
   useEffect(() => {
     if (!src) return;
