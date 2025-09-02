@@ -69,7 +69,7 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
                 WebkitFilter: `blur(${coverStyle?.blurIntensity})`,
                 opacity: coverStyle?.opacity,
                 transform: `scale(${coverStyle?.scale})`,
-                zIndex: 2,
+                zIndex: 1,
               }}
             />
           )}
@@ -79,25 +79,35 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
             <div 
               className="absolute inset-0 transition-opacity duration-300"
               style={{
-                backgroundColor: coverStyle?.overlay || 'rgba(255,0,0,0.5)',
-                zIndex: 3,
+                backgroundColor: coverStyle?.overlay || 'rgba(0,0,0,0.2)',
+                zIndex: 2,
               }}
             />
           )}
           
-          {/* 前景图片 - 居中显示，在模糊背景之上 */}
-          <div className="absolute inset-0 flex items-center justify-center p-4" style={{ zIndex: 4 }}>
-            <img
-              src={src}
-              alt={alt}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
-              loading="lazy"
-              style={{
-                maxHeight: '120px',
-                maxWidth: '100%'
-              }}
-            />
-          </div>
+          {/* 前景图片 - 只在没有模糊效果时显示 */}
+          {!coverStyle?.blur && (
+            <div className="absolute inset-0 flex items-center justify-center p-4" style={{ zIndex: 3 }}>
+              <img
+                src={src}
+                alt={alt}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+                loading="lazy"
+                style={{
+                  maxHeight: '120px',
+                  maxWidth: '100%'
+                }}
+              />
+            </div>
+          )}
+          
+          {/* 相册信息 - 在模糊背景之上显示 */}
+          {coverStyle?.blur && (
+            <div className="absolute inset-0 flex flex-col justify-end p-4 text-white" style={{ zIndex: 3 }}>
+              <h3 className="text-lg font-bold mb-1">{name}</h3>
+              <p className="text-sm opacity-90">点击查看详情</p>
+            </div>
+          )}
         </>
       ) : (
         <div className="w-full h-full flex items-center justify-center">
