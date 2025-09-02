@@ -55,29 +55,33 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
       {isLoaded && src ? (
         <>
           {/* 模糊背景 - 封面照片放大并模糊处理 */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${src})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              filter: `blur(${coverStyle?.blurIntensity})`,
-              WebkitFilter: `blur(${coverStyle?.blurIntensity})`,
-              opacity: coverStyle?.opacity,
-              transform: `scale(${coverStyle?.scale})`,
-              zIndex: 1,
-            }}
-          />
+          {coverStyle?.blur && (
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${src})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                filter: `blur(${coverStyle?.blurIntensity})`,
+                WebkitFilter: `blur(${coverStyle?.blurIntensity})`,
+                opacity: coverStyle?.opacity,
+                transform: `scale(${coverStyle?.scale})`,
+                zIndex: 1,
+              }}
+            />
+          )}
           
           {/* 半透明蒙版 - 使用JSON配置 */}
-          <div 
-            className="absolute inset-0 transition-opacity duration-300"
-            style={{
-              backgroundColor: coverStyle?.overlay,
-              zIndex: 2,
-            }}
-          />
+          {coverStyle?.blur && coverStyle?.overlay && (
+            <div 
+              className="absolute inset-0 transition-opacity duration-300"
+              style={{
+                backgroundColor: coverStyle?.overlay,
+                zIndex: 2,
+              }}
+            />
+          )}
           
           {/* 前景图片 - 居中显示，在模糊背景之上 */}
           <div className="absolute inset-0 flex items-center justify-center p-4" style={{ zIndex: 3 }}>
