@@ -54,15 +54,6 @@ export function AlbumCover({ src, alt, name, coverStyle }: AlbumCoverProps) {
 
   return (
     <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-800 overflow-hidden">
-      {/* 强制测试蒙版 - 总是显示 */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          backgroundColor: 'rgba(0,255,0,0.3)',
-          zIndex: 1,
-        }}
-      />
-      
       {isLoaded && src ? (
         <>
           {/* 模糊背景 - 封面照片放大并模糊处理 */}
